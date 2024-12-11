@@ -3,7 +3,7 @@
 #define CHESSBOARD_H
 #include "Console.h"
 #include "Menu.h"
-// sua
+// sua cai j do
 char X();
 char O();
 void ResetData();
