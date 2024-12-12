@@ -67,9 +67,9 @@ void gameBackground() {
 }
 void vienPlayer() {
     // Viền X
-    BOX(18, 17, 16, 8);
+    BOX(2, 16, 16, 10);
     // Viền O
-    BOX(89, 17, 16, 8);
+    BOX(20, 16, 16, 10);
     GotoXY(_A[0][0].x + 49, _A[0][0].y + 11);
     turnPlayer();   // Cập nhật giao diện theo lượt
     playSound(3, 0);
@@ -79,34 +79,34 @@ void turnPlayer() {
     if (!_TURN) {
         SetConsoleOutputCP(CP_UTF8);
         setColor(124);
-        GotoXY(20, 17);
+        GotoXY(4, 17);
         cout << u8" ██╗  ██╗";
-        GotoXY(20, 18);
+        GotoXY(4, 18);
         cout << u8" ╚██╗██╔╝  ";
-        GotoXY(20, 19);
+        GotoXY(4, 19);
         cout << u8"  ╚███╔╝ ";
-        GotoXY(20, 20);
+        GotoXY(4, 20);
         cout << u8"  ██╔██╗ ";
-        GotoXY(20, 21);
+        GotoXY(4, 21);
         cout << u8" ██╔╝ ██╗";
-        GotoXY(20, 22);
+        GotoXY(4, 22);
         cout << u8" ╚═╝  ╚═╝";
         SetConsoleOutputCP(437);
 
         // An O
         SetConsoleOutputCP(CP_UTF8);
         setColor(120);
-        GotoXY(91, 17);
+        GotoXY(22, 17);
         cout << u8"  ██████╗ ";
-        GotoXY(91, 18);
+        GotoXY(22, 18);
         cout << u8" ██╔═══██╗";
-        GotoXY(91, 19);
+        GotoXY(22, 19);
         cout << u8" ██║   ██║";
-        GotoXY(91, 20);
+        GotoXY(22, 20);
         cout << u8" ██║   ██║";
-        GotoXY(91, 21);
+        GotoXY(22, 21);
         cout << u8" ╚██████╔╝";
-        GotoXY(91, 22);
+        GotoXY(22, 22);
         cout << u8"  ╚═════╝";
         SetConsoleOutputCP(437);
     }
@@ -114,33 +114,33 @@ void turnPlayer() {
         // An X
         SetConsoleOutputCP(CP_UTF8);
         setColor(120);
-        GotoXY(20, 17);
+        GotoXY(4, 17);
         cout << u8" ██╗  ██╗";
-        GotoXY(20, 18);
+        GotoXY(4, 18);
         cout << u8" ╚██╗██╔╝  ";
-        GotoXY(20, 19);
+        GotoXY(4, 19);
         cout << u8"  ╚███╔╝ ";
-        GotoXY(20, 20);
+        GotoXY(4, 20);
         cout << u8"  ██╔██╗ ";
-        GotoXY(20, 21);
+        GotoXY(4, 21);
         cout << u8" ██╔╝ ██╗";
-        GotoXY(20, 22);
+        GotoXY(4, 22);
         cout << u8" ╚═╝  ╚═╝";
         SetConsoleOutputCP(437);
         // Hien thi O
         SetConsoleOutputCP(CP_UTF8);
         setColor(121);
-        GotoXY(91, 17);
+        GotoXY(22, 17);
         cout << u8"  ██████╗ ";
-        GotoXY(91, 18);
+        GotoXY(22, 18);
         cout << u8" ██╔═══██╗";
-        GotoXY(91, 19);
+        GotoXY(22, 19);
         cout << u8" ██║   ██║";
-        GotoXY(91, 20);
+        GotoXY(22, 20);
         cout << u8" ██║   ██║";
-        GotoXY(91, 21);
+        GotoXY(22, 21);
         cout << u8" ╚██████╔╝";
-        GotoXY(91, 22);
+        GotoXY(22, 22);
         cout << u8"  ╚═════╝";
         SetConsoleOutputCP(437);
     }
@@ -151,61 +151,61 @@ void gameText() {
     // Viet chu
         //X
     setColor(120);
-    GotoXY(22, 25);
+    GotoXY(6, 25);
     cout << "W - up";
-    GotoXY(22, 26);
+    GotoXY(6, 26);
     cout << "S - down";
-    GotoXY(22, 27);
+    GotoXY(6, 27);
     cout << "A - left";
-    GotoXY(22, 28);
+    GotoXY(6, 28);
     cout << "D - right";
-    GotoXY(18, 29);
+    GotoXY(2, 29);
     cout << "Space - tick";
-        
-        //O
+
+    //O
     SetConsoleOutputCP(CP_UTF8);
-    GotoXY(93, 25);
+    GotoXY(24, 25);
     cout << u8"⭡ - up";
-    GotoXY(93, 26);
+    GotoXY(24, 26);
     cout << u8"⭣ - down";
-    GotoXY(93, 27);
+    GotoXY(24, 27);
     cout << u8"⭠ - left";
-    GotoXY(93, 28);
+    GotoXY(24, 28);
     cout << u8"⭢ - right";
-    GotoXY(89, 29);
+    GotoXY(20, 29);
     cout << "Enter - tick";
     SetConsoleOutputCP(437);
 
     // To mau chu
         // X
     setColor(124);
-    GotoXY(22, 25);
+    GotoXY(6, 25);
     cout << "W";
-    GotoXY(22, 26);
+    GotoXY(6, 26);
     cout << "S";
-    GotoXY(22, 26);
+    GotoXY(6, 26);
     cout << "S";
-    GotoXY(22, 27);
+    GotoXY(6, 27);
     cout << "A";
-    GotoXY(22, 28);
+    GotoXY(6, 28);
     cout << "D";
-    GotoXY(18, 29);
+    GotoXY(2, 29);
     cout << "Space";
-        // O
+    // O
     setColor(121);
     SetConsoleOutputCP(CP_UTF8);
-    GotoXY(93, 25);
+    GotoXY(24, 25);
     cout << u8"⭡";
-    GotoXY(93, 26);
+    GotoXY(24, 26);
     cout << u8"⭣";
-    GotoXY(93, 27);
+    GotoXY(24, 27);
     cout << u8"⭠";
-    GotoXY(93, 28);
+    GotoXY(24, 28);
     cout << u8"⭢";
-    GotoXY(89, 29);
+    GotoXY(20, 29);
     cout << "Enter";
     SetConsoleOutputCP(437);
-         // khac
+    // khac
     setColor(132);
     GotoXY(55, 29);
     cout << "Esc - pause";
@@ -216,43 +216,310 @@ int ProcessFinish(int pWhoWin) {
     GotoXY(0, _A[BOARD_SIZE - 1][BOARD_SIZE - 1].y + 2); // Nhảy tới vị trí thích hợp
     switch (pWhoWin) {
     case -1:
-        Sleep(1100);
+        Sleep(500);
         SetConsoleOutputCP(CP_UTF8);
         setColor(124);
-        GotoXY(57, 0);
-        cout << u8R"(
-                                          ██╗  ██╗    ██╗    ██╗██╗███╗   ██╗██╗                             
-                                          ╚██╗██╔╝    ██║    ██║██║████╗  ██║██║                           
-                                           ╚███╔╝     ██║ █╗ ██║██║██╔██╗ ██║██║                       
-                                           ██╔██╗     ██║███╗██║██║██║╚██╗██║╚═╝                       
-                                          ██╔╝ ██╗    ╚███╔███╔╝██║██║ ╚████║██╗                            
-                                          ╚═╝  ╚═╝     ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝                                            )";
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(124);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(124);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(124);
+        GotoXY(85, 2);
+        cout << u8"██╗  ██╗ ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"╚██╗██╔╝ ██║    ██║██║████╗  ██║██║";
+        GotoXY(86, 4);
+        cout << u8"╚███╔╝  ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(86, 5);
+        cout << u8"██╔██╗  ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"██╔╝ ██╗ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(85, 7);
+        cout << u8"╚═╝  ╚═╝  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(650);
         break;
     case 1:
-        Sleep(1100);
+        Sleep(500);
         SetConsoleOutputCP(CP_UTF8);
         setColor(121);
-        GotoXY(57, 0);
-        cout << u8R"(
-                                          ██████╗     ██╗    ██╗██╗███╗   ██╗██╗                                     
-                                         ██╔═══██╗    ██║    ██║██║████╗  ██║██║                                  
-                                         ██║   ██║    ██║ █╗ ██║██║██╔██╗ ██║██║                                
-                                         ██║   ██║    ██║███╗██║██║██║╚██╗██║╚═╝                                  
-                                         ╚██████╔╝    ╚███╔███╔╝██║██║ ╚████║██╗                                   
-                                          ╚═════╝      ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝                                           )";
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(121);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(121);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(150);
+        setColor(121);
+        GotoXY(86, 2);
+        cout << u8"█████╗  ██╗    ██╗██╗███╗   ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔══██╗ ██║    ██║██║████╗  ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║  ██║ ██║ █╗ ██║██║██╔██╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║  ██║ ██║███╗██║██║██║╚██╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"╚█████╔╝ ╚███╔███╔╝██║██║ ╚████║██╗";
+        GotoXY(86, 7);
+        cout << u8"╚════╝   ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝";
+        Sleep(650);
         break;
     case 0:
-        Sleep(1100);
+        Sleep(500);
         SetConsoleOutputCP(CP_UTF8);
         setColor(122);
-        GotoXY(57, 0);
-        cout << u8R"(
-                                         ██████╗ ██████╗  █████╗ ██╗    ██╗██╗                                           
-                                         ██╔══██╗██╔══██╗██╔══██╗██║    ██║██║                                            
-                                         ██║  ██║██████╔╝███████║██║ █╗ ██║██║                                           
-                                         ██║  ██║██╔══██╗██╔══██║██║███╗██║╚═╝                                            
-                                         ██████╔╝██║  ██║██║  ██║╚███╔███╔╝██╗                                          
-                                         ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝                                            )";
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(122);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(122);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(120);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(150);
+        setColor(122);
+        GotoXY(85, 2);
+        cout << u8"█████╗ █████╗  █████╗ ██╗    ██╗██╗";
+        GotoXY(85, 3);
+        cout << u8"██╔═██╗██╔═██╗██╔══██╗██║    ██║██║";
+        GotoXY(85, 4);
+        cout << u8"██║ ██║█████╔╝███████║██║ █╗ ██║██║";
+        GotoXY(85, 5);
+        cout << u8"██║ ██║██╔═██╗██╔══██║██║███╗██║╚═╝";
+        GotoXY(85, 6);
+        cout << u8"█████╔╝██║ ██║██║  ██║╚███╔███╔╝██╗";
+        GotoXY(85, 7);
+        cout << u8"╚════╝ ╚═╝ ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝";
+        Sleep(650);
         break;
     case 2:
         _TURN = !_TURN; // Đổi lượt nếu không có gì xảy ra
@@ -265,8 +532,8 @@ int ProcessFinish(int pWhoWin) {
 
 int AskContinue() {
     setColor(112);
-    box(45, 10, 33, 3, " ");
-    GotoXY(46, 10);
+    box(87, 10, 32, 3, " ");
+    GotoXY(88, 10);
     printf("Press Y/N to Play Again/Back"); // Nhập Y để chơi tiếp hoặc nhập N để quay về Menu
     char response = _getch();
     return toupper(response);
@@ -281,6 +548,7 @@ int PlayWithPlayer() {
     GotoXY(_A[0][0].x + 1, _A[0][0].y);
     bool validEnter = true;
     while (true) {
+        Sleep(100);
         char command = getInput(); // Lấy đầu vào từ phím
         if (command) {
             command = toupper(command);
@@ -321,7 +589,7 @@ int PlayWithPlayer() {
                                 ExitGame();
                                 return 0;
                             }
-                            else if(AskContinue() != 'N') {
+                            else if (AskContinue() != 'N') {
                                 continueGame();
                                 vienPlayer();
                                 gameText();
@@ -332,7 +600,7 @@ int PlayWithPlayer() {
                                 break;
                             }
                         default:
-                                break;
+                            break;
                         }
                     }
                     validEnter = true; // Mở khóa
@@ -345,6 +613,5 @@ int PlayWithPlayer() {
                 }
             }
         }
-        Sleep(100);
     }
 }

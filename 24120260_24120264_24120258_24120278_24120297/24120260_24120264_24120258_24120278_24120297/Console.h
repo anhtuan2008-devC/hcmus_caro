@@ -24,6 +24,7 @@ void ShowScrollbar(BOOL Show);
 void DisableScrollbar();
 void BOX(int x, int y, int w, int h);
 void printAsciiArt(const string&, int , int );
+void SSetColor(int mauBg, int mauchu);
 
 #define Black 112 
 #define Blue 113

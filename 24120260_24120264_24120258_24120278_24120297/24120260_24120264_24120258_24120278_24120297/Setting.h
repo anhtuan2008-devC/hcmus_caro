@@ -1,6 +1,7 @@
 #pragma once
 #include "Menu.h"
 
-void settingBackground();
-void settingText();
+void drawVolumeBar(short volume);
+void drawInstructions();
+void handleVolume();
 void settingScreen();

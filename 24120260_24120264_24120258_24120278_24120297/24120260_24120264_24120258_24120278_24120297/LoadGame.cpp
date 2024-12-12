@@ -1,8 +1,41 @@
 ﻿#include "LoadGame.h"
 
+
+
+void DeleteFile(const string& filename) {
+    FILE* file;
+
+    if (fopen_s(&file, filename.c_str(), "r") == 0 && file != nullptr) {
+        fclose(file);
+        if (remove(filename.c_str()) == 0) {
+            cout << "File '" << filename << "' da duoc xoa" << endl;
+        }
+        else {
+            // In chi tiết lỗi khi xóa không thành công
+            cerr << "Khong the xoa file '" << filename << "'." << endl;
+            perror("Chi tiet loi khi xoa file"); // Chi tiết về lỗi
+        }
+    }
+    else {
+        // In thông báo nếu không thể mở file
+        cerr << "File '" << filename << "' khong ton tai hoặc khong thể mở." << endl;
+    }
+}
+
+// Hàm đổi tên tệp
+void RenameFile(const string& oldName, const string& newName) {
+    try {
+        fs::rename(oldName, newName);
+        cout << "Đã đổi tên tệp từ " << oldName << " thành " << newName << endl;
+    }
+    catch (const fs::filesystem_error& e) {
+        cout << "Lỗi khi đổi tên tệp: " << e.what() << endl;
+    }
+}
+
+
 void SaveGame() {
     // L
-
     GotoXY(21, 2);
     cout << char(220) << char(219) << char(223) << char(223) << char(223) << char(219) << char(220);
     GotoXY(21, 3);
@@ -75,12 +108,130 @@ void SaveGame() {
     cout << char(219) << char(219) << char(223) << char(223);
     GotoXY(92, 5);
     cout << char(219) << char(219) << char(220) << char(220) << char(220) << char(220);
+    // pkm
+    GotoXY(40, 13);
+    cout << char(220) << char(223) << char(223) << char(223) << char(223) << char(223) << char(220) << char(220);
+    GotoXY(39, 14);
+    cout << char(219) << "      " << char(220) << char(220) << char(219) << char(220) << char(220) << char(220) << char(223) << char(223) << char(223) << char(220) << "   " << char(219) << char(223) << char(220);
+    GotoXY(38, 15);
+    cout << char(219) << " " << char(220) << char(223) << char(220) << char(220) << char(223) << char(223) << "   " << char(219) << "   " << char(220) << char(219) << char(223) << char(220) << "  " << char(223) << char(220) << char(223) << char(220);
+    GotoXY(37, 16);
+    cout << char(219) << " " << char(220) << char(223) << char(223) << "     " << char(220) << char(219) << char(220) << " " << char(220) << char(223) << " " << char(223) << char(220) << " " << char(223) << char(220) << char(220) << char(219) << char(220) << char(223) << char(220);
+    GotoXY(37, 17);
+    cout << char(220) << char(223) << "      " << char(220) << char(223) << char(219) << "  " << char(223) << char(223) << char(220) << char(220) << char(223) << char(223) << char(223) << "  " << char(223) << "   " << char(223) << char(220);
+    GotoXY(37, 18);
+    cout << char(220) << char(223) << char(223) << char(223) << char(223) << char(220) << char(220) << "           " << char(220) << char(220) << "  " << char(220) << "    " << char(219);
+    GotoXY(37, 19);
+    cout << char(223) << char(219) << "  " << char(219) << "   " << char(219) << " " << char(223) << char(220) << char(223) << char(220) << "  " << char(220) << char(223) << " " << char(223) << char(220) << "  " << char(219) << char(220) << "   " << char(223) << char(220);
+    GotoXY(39, 20);
+    cout << char(223) << char(219) << "     " << char(223) << char(220) << "   " << char(219) << char(223) << " " << char(219) << "   " << char(223) << char(223) << char(220) << char(220) << "   " << char(220) << char(223);
+    GotoXY(40, 21);
+    cout << char(223) << char(220) << "    " << char(223) << char(220) << char(223) << char(223) << char(223) << char(220) << char(220) << char(223) << char(220) << "       " << char(223) << char(223) << char(223);
+    GotoXY(41, 22);
+    cout << char(223) << char(220) << "   " << char(220) << char(219) << char(220) << char(223) << char(223) << char(223) << char(223) << char(223) << char(223);
+    GotoXY(42, 23);
+    cout << char(223) << char(220) << char(220) << char(220) << char(220) << char(223);
+
+    //red
+    setColor(4);
+    GotoXY(41, 13);
+    cout << char(220) << char(220) << char(220) << char(220) << char(220);
+    GotoXY(40, 14);
+    cout << char(223) << " " << char(220) << char(219) << char(219) << char(219) << char(223) << char(223);
+    GotoXY(42, 15);
+    cout << char(223) << char(223);
+
+    //yellow
+    setColor(14);
+    GotoXY(40, 14);
+    cout << char(220) << char(219) << char(223);
+    GotoXY(48, 21);
+    cout << char(220) << char(220);
+
+    //blue
+    setColor(9);
+    GotoXY(46, 15);
+    cout << char(220) << char(220);
+    GotoXY(42, 16);
+    cout << char(220) << char(220) << char(219) << char(219) << char(219) << char(223);
+    GotoXY(39, 17);
+    cout << char(220) << char(219) << char(219) << char(219) << char(219) << char(219) << char(223) << char(220);
+    GotoXY(42, 18);
+    cout << char(223) << char(223) << char(219) << char(219) << char(219);
+
+    //orange
+    setColor(6);
+    GotoXY(52, 14);
+    cout << char(220) << char(220) << char(220);
+    GotoXY(60, 14);
+    cout << char(220);
+    GotoXY(39, 15);
+    cout << char(219) << char(223) << char(220) << "  " << char(220) << char(220) << char(223) << char(223) << char(219) << " " << char(219) << char(219) << char(219) << char(223) << " " << char(220);
+    GotoXY(60, 15);
+    cout << char(223) << char(220);
+    GotoXY(38, 16);
+    cout << char(219) << char(223) << char(220) << char(220) << char(223) << char(223);
+    GotoXY(49, 16);
+    cout << char(223) << char(219) << char(223);
+    GotoXY(55, 16);
+    cout << char(223) << char(219) << char(220);
+    GotoXY(61, 16);
+    cout << char(223) << char(220);
+    GotoXY(38, 17);
+    cout << char(220) << char(223);
+    GotoXY(48, 17);
+    cout << char(219) << char(219) << char(220) << char(220);
+    GotoXY(54, 17);
+    cout << char(220) << char(220) << char(220) << char(219) << char(219) << char(220) << char(219) << char(219) << char(219) << char(220);
+    GotoXY(38, 18);
+    cout << char(220) << char(220) << char(220) << char(220);
+    GotoXY(47, 18);
+    cout << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(219) << char(223) << char(223) << char(219) << char(219) << char(223) << char(219) << char(219) << char(219) << char(219);
+    GotoXY(50, 19);
+    cout << char(223) << char(219) << char(219) << char(223);
+    GotoXY(39, 19);
+    cout << char(219) << char(219) << " " << char(219) << char(219) << char(219) << " " << char(219) << char(220) << char(223);
+    GotoXY(57, 19);
+    cout << char(223) << char(219);
+    GotoXY(61, 19);
+    cout << char(223) << char(219) << char(219) << char(219) << char(220);
+    GotoXY(41, 20);
+    cout << char(219) << char(219) << char(219) << char(219) << char(219) << char(220) << char(223) << char(219) << char(219) << char(223);
+    GotoXY(52, 20);
+    cout << char(220) << char(219);
+    GotoXY(60, 20);
+    cout << char(223) << char(223) << char(219) << char(219) << char(219) << char(223);
+    GotoXY(41, 21);
+    cout << char(223) << char(219) << char(219) << char(219) << char(219) << char(220) << char(223);
+    GotoXY(50, 21);
+    cout << char(220) << char(223) << char(223) << char(220);
+    GotoXY(42, 22);
+    cout << char(223) << char(219) << char(219) << char(219) << char(223);
+    GotoXY(48, 22);
+    cout << char(223);
+    GotoXY(43, 23);
+    cout << char(223);
+    GotoXY(45, 23);
+    cout << char(223);
+
+    //white
+    setColor(15);
+    GotoXY(49, 19);
+    cout << char(220);
+    GotoXY(59, 19);
+    cout << char(219);
+    GotoXY(50, 20);
+    cout << char(219);
+    GotoXY(44, 23);
+    cout << char(223);
+    GotoXY(46, 23);
+    cout << char(223);
 
     int saveCount = 0;
     string filename;
     while (saveCount <= 10) {
-        box(40, 11, 50, 5, "Nhap ten file de luu game:");
-        GotoXY(70, 12);
+        box(35, 8, 50, 5, "Nhap ten file de luu game:");
+        GotoXY(65, 9);
         cin >> filename;
         ofstream file(filename);
         if (file.is_open()) {
@@ -90,7 +241,13 @@ void SaveGame() {
                 }
                 file << "\n";
             }
+
+
+
             file << (_TURN ? 1 : 0) << "\n";
+
+
+
             file.close();
             saveCount++;
             GotoXY(65, 20);
@@ -107,6 +264,7 @@ void SaveGame() {
         cout << "Da luu qua 10 lan" << endl;
         return;
     }
+
 }
 
 
@@ -197,7 +355,9 @@ void LoadGame() {
             i++;
         }
     }
-    box(40, 20, 45, 5, "Nhap ten file de load game:");
+    box(40, 20, 45, 5, "Nhap ten file ma ban muon :");
+
+
     // hinh 1 
     GotoXY(10, 14);
     cout << char(220) << char(220) << char(220) << char(220) << char(220) << char(220) << char(220);
@@ -249,118 +409,188 @@ void LoadGame() {
     setColor(117);
     GotoXY(72, 21);
 
-    filename = ""; // Xóa chuỗi filename trước mỗi lần nhập
+    filename = "";
     while (true) {
-        key = _getch(); // Nhận phím từ người dùng
+        key = _getch();
 
-        if (key == 27) { // Nếu phím Esc được nhấn
+        if (key == 27) {
             playSound(3, 0);
             clearScreen();
-            xuLyMenu(); // Quay về Menu
+            xuLyMenu();
         }
-        else if (key == '\r') { // Nếu phím Enter được nhấn
-            if (!filename.empty()) { // Chỉ xử lý nếu người dùng đã nhập gì đó
-                break; // Thoát vòng lặp nhập filename
+        else if (key == '\r') {
+            if (!filename.empty()) {
+                break;
             }
         }
-        else if (key == '\b') { // Nếu phím Backspace được nhấn
+        else if (key == '\b') {
             if (!filename.empty()) {
-                filename.pop_back(); // Xóa ký tự cuối cùng
-                cout << "\b \b";    // Xóa trên màn hình
+                filename.pop_back();
+                cout << "\b \b";
             }
         }
         else {
-            filename += key; // Thêm ký tự vừa nhập vào filename
-            cout << key;     // Hiển thị ký tự ra màn hình
+            filename += key;
+            cout << key;
         }
     }
 
-    clearScreen();
+    box(20, 25, 20, 5, "Load Game");
+    box(52, 25, 20, 5, "Xoa File");
+    box(84, 25, 20, 5, "Doi Ten");
     ifstream file(filename);
-    if (file.is_open()) {
-        ShowBlinkingCursor(true);
-        system("color 70");
-        fixConsoleWindow();
-        ResetData();
-        vienPlayer();
-        DrawBoard(BOARD_SIZE);
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                int value;
-                file >> value;
-                if (value == -1) {
-                    GotoXY(_A[i][j].x, _A[i][j].y);
-                    printf("%c", X());
-                }
-                if (value == 1) {
-                    GotoXY(_A[i][j].x, _A[i][j].y);
-                    printf("%c", O());
-                }
-
+    int selection = 0;
+    while (true) {
+        for (int i = 0; i < 3; i++) {
+            setColor(i == selection ? 124 : 112);
+            switch (i) {
+            case 0: box(20, 25, 20, 5, "Load Game"); break;
+            case 1: box(52, 25, 20, 5, "Xoa File");; break;
+            case 2: box(84, 25, 20, 5, "Doi Ten");; break;
             }
+            Sleep(10);
         }
-        int turn;
-        file >> turn;
-        _TURN = (turn == 1);
 
-        file.close();
+        char ch = _getch();
 
-        bool validEnter = true;
-        while (true) {
-            char command = getInput();
-            if (command) {
-                command = toupper(command);
-                if (command == 27) {
-                    playSound(3, 0);
-                    ExitGame();
-                    break;
-                }
-                else {
-                    if (command == 'A') {
-                        MoveLeft();
-                    }
-                    else if (command == 'W') MoveUp();
-                    else if (command == 'S') MoveDown();
-                    else if (command == 'D') MoveRight();
-                    else if (command == 13) {
-                        switch (CheckBoard(_X, _Y)) {
-                        case -1:
-                            break;
-                        case 1:
-                            break;
-                        case 0:
-                            validEnter = false;
-                            break;
+        if (ch == 27) {
+            playSound(3, 0);
+            clearScreen();
+            xuLyMenu();
+            break;
+        }
+        playSound(2, 0);
+        if (ch == 13) {
+            switch (selection) {
+            case 0:
+                playSound(3, 0);
+                clearScreen();
+                if (file.is_open()) {
+                    ShowBlinkingCursor(true);
+                    system("color 70");
+                    fixConsoleWindow();
+                    ResetData();
+                    vienPlayer();
+                    gameText();
+                    DrawBoard(BOARD_SIZE);
+                    displayScore(0);
+                    moveCount(0);
+                    for (int i = 0; i < BOARD_SIZE; i++) {
+                        for (int j = 0; j < BOARD_SIZE; j++) {
+                            int value;
+                            file >> value;
+                            if (value == -1) {
+                                GotoXY(_A[i][j].x + 1, _A[i][j].y);
+                                printf("%c", X());
+                                moveCount(-1);
+                            }
+                            if (value == 1) {
+                                GotoXY(_A[i][j].x + 1, _A[i][j].y);
+                                printf("%c", O());
+                                moveCount(1);
+                            }
+
                         }
-                        if (validEnter) {
-                            switch (ProcessFinish(TestBoard())) {
-                            case -1: case 1: case 0:
-                                if (AskContinue() != 'Y') {
-                                    ExitGame();
-                                    break;
+                    }
+                    int turn;
+                    file >> turn;
+                    _TURN = (turn == 1);
+
+                    file.close();
+
+                    bool validEnter = true;
+                    while (true) {
+                        char command = getInput(); // Lấy đầu vào từ phím
+                        if (command) {
+                            command = toupper(command);
+                            if (command == 27) { // ESC để thoát
+                                playSound(3, 0);
+                                Sleep(10);
+                                ExitGame();
+                                break;
+                            }
+                            else {
+                                if (command == 'A') {
+                                    MoveLeft();
                                 }
-                                else {
-                                    StartGame();
+                                else if (command == 'W') MoveUp();
+                                else if (command == 'S') MoveDown();
+                                else if (command == 'D') MoveRight();
+                                else if (command == 13) { // Nhấn Enter để đánh dấu
+                                    switch (CheckBoard(_X, _Y)) {
+                                    case -1:
+                                        playSound(3, 0);
+                                        vienPlayer();
+                                        moveCount(-1);
+                                        break; // Quân X đã được vẽ
+                                    case 1:
+                                        playSound(3, 0);
+                                        vienPlayer();
+                                        moveCount(1);
+                                        break; // Quân O đã được vẽ
+                                    case 0:
+                                        validEnter = false; // Ô đã được đánh dấu
+                                        break;
+                                    }
+                                    if (validEnter) {
+                                        switch (ProcessFinish(TestBoard())) {
+                                        case -1: case 1: case 0:
+                                            if (AskContinue() != 'Y') {
+                                                playSound(3, 0);
+                                                ExitGame();
+                                                break;
+                                            }
+                                            else {
+                                                continueGame();
+                                                vienPlayer();
+                                                gameText();
+                                                GotoXY(_A[0][0].x, _A[0][0].y);
+                                                break;
+                                            }
+                                        default:
+                                            break;
+                                        }
+                                    }
+                                    validEnter = true; // Mở khóa
+                                }
+                                else if (command == 'L') {
+                                    clearScreen();
+                                    SaveGame();
+                                    clearScreen();
                                     break;
                                 }
                             }
                         }
-                        validEnter = true;
-                    }
-                    else if (command == 'L') {
-                        clearScreen();
-                        SaveGame();
-                        clearScreen();
-                        break;
+                        Sleep(100);
                     }
                 }
+                break;
+            case 1:
+                playSound(3, 0);
+                clearScreen();
+                DeleteFile(filename);
+                break;
+            case 2:
+                playSound(3, 0);
+                clearScreen();
+                string filename2;
+                box(35, 8, 50, 5, "Nhap ten file ma ban muon doi : ");
+                GotoXY(71, 9);
+                cin >> filename2;
+                RenameFile(filename, filename2);
+                break;
             }
-            Sleep(100);
         }
 
-    }
-    else {
-        cerr << "Khong the mo file de load!" << endl;
-        LoadGame();
+        if (ch == 75 or ch == 'a' or ch == 'A') { // Phím mũi ten trai 
+            if (selection > 0) {
+                selection--;
+            }
+        }
+        else if (ch == 77 or ch == 'd' or ch == 'D') { // Phím mũi tên phai 
+            if (selection < 2) {
+                selection++;
+            }
+        }
     }
 }

@@ -96,7 +96,7 @@ void StartGame() {
 }
 
 void GabageCollect() {
-    
+
 }
 
 // Hàm thoát game
@@ -155,15 +155,15 @@ int CheckWin(int player) {
     }
 
     // Kiểm tra đường chéo phụ
-    for (int i = 4; i < BOARD_SIZE; i++) {
-        for (int j = 0; j <= BOARD_SIZE - 5; j++) {
+    for (int i = 4; i < BOARD_SIZE; i++) { // Bắt đầu từ hàng thứ 4 để đảm bảo đủ không gian
+        for (int j = 0; j <= BOARD_SIZE - 5; j++) { // Duyệt cột từ trái sang phải
             if ((_A[i][j].c == player &&
                 _A[i - 1][j + 1].c == player &&
                 _A[i - 2][j + 2].c == player &&
                 _A[i - 3][j + 3].c == player &&
                 _A[i - 4][j + 4].c == player)) {
-                markWinning(i, j, 1, -1, player);
-                Sleep(1100);
+                // Gọi hàm đánh dấu chuỗi thắng
+                markWinning(i, j, -1, 1, player); // Hướng là (-1, +1)
                 displayScore(player);
                 return player; // Trả về người thắng
             }
@@ -194,7 +194,7 @@ int TestBoard() {
         }
     }
 
-    return 2; 
+    return 2;
 }
 
 int CheckBoard(int pX, int pY) {
@@ -211,7 +211,7 @@ int CheckBoard(int pX, int pY) {
             }
         }
     }
-    return 0; 
+    return 0;
 }
 
 void MoveRight() {
@@ -257,17 +257,17 @@ char getInput() {
     if (GetAsyncKeyState(VK_DOWN) & 0x8000) return 'S';
     if (GetAsyncKeyState(VK_LEFT) & 0x8000) return 'A';
     if (GetAsyncKeyState(VK_RIGHT) & 0x8000) return 'D';
-    if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) return 27; 
-    if (GetAsyncKeyState(VK_RETURN) & 0x8000) return 13; 
+    if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) return 27;
+    if (GetAsyncKeyState(VK_RETURN) & 0x8000) return 13;
     if (GetAsyncKeyState(0x57) & 0x8000) return 'W';
     if (GetAsyncKeyState(0x53) & 0x8000) return 'S';
     if (GetAsyncKeyState(0x41) & 0x8000) return 'A';
     if (GetAsyncKeyState(0x44) & 0x8000) return 'D';
     if (GetAsyncKeyState(VK_SPACE) & 0x8000) return 13;
     if (GetAsyncKeyState(0x4C) & 0x8000) {
-        return 'L';  
+        return 'L';
     }
-    return 0; 
+    return 0;
 }
 
 void markWinning(int startX, int startY, int dirX, int dirY, int player) {
@@ -293,17 +293,23 @@ void displayScore(int player) {
     else if (player == 1) {
         scoreO++;
     }
-    box(20, 14, 11, 3, " ");
-    box(92, 14, 11, 3, " ");
-    setColor(124);
-    GotoXY(21, 12);
-    printf("X SCORE");
-    GotoXY(24, 14);
+    SetConsoleOutputCP(CP_UTF8);
+    GotoXY(9, 1);
+    cout << u8" ┌─┐┌─┐┌─┐┬─┐┌─┐ ";
+    GotoXY(9, 2);
+    cout << u8" └─┐│  │ │├┬┘├┤ ";
+    GotoXY(9, 3);
+    cout << u8" └─┘└─┘└─┘┴└─└─┘ ";
+    GotoXY(16, 6);
+    cout << u8" ── ";
+    SetConsoleOutputCP(437);
+    setColor(79);
+    box(5, 6, 11, 3, " ");
+    GotoXY(9, 6);
     printf("%d", scoreX);
-    setColor(121);
-    GotoXY(93, 12);
-    printf("O SCORE");
-    GotoXY(96, 14);
+    setColor(159);
+    box(22, 6, 11, 3, " ");
+    GotoXY(26, 6);
     printf("%d", scoreO);
     setColor(112);
 }
@@ -314,12 +320,22 @@ void moveCount(int player) {
     else if (player == 1) {
         Omove++;
     }
+    SetConsoleOutputCP(CP_UTF8);
+    GotoXY(4, 10);
+    cout << u8" ┌┬┐┌─┐┬  ┬┌─┐ ";
+    GotoXY(4, 11);
+    cout << u8" ││││ │└┐┌┘├┤ ";
+    GotoXY(4, 12);
+    cout << u8" ┴ ┴└─┘ └┘ └─┘ ";
+    GotoXY(20, 11);
+    cout << u8" ────────── ";
+    SetConsoleOutputCP(437);
     setColor(79);
-    GotoXY(19, 9);
-    printf("X MOVES: [%d]", Xmove);
+    GotoXY(22, 10);
+    printf(" X: [%d] ", Xmove);
     setColor(159);
-    GotoXY(90, 9);
-    printf("O MOVES: [%d]", Omove);
+    GotoXY(22, 12);
+    printf(" O: [%d] ", Omove);
     setColor(112);
 }
 void continueGame() {

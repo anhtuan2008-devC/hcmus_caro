@@ -165,3 +165,8 @@ void printAsciiArt(const string& filename, int startX = 0, int startY = 0) {
 	}
 	file.close();
 }
+
+void SSetColor(int mauBg, int mauchu) {
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, (mauBg << 4) | mauchu);
+}
