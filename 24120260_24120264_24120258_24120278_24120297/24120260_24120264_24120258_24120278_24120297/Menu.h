@@ -7,7 +7,11 @@
 #include "PorE.h"
 #include "Setting.h"
 
-void box(int x, int y, int w, int h, string nd);
+void boxPlayGame();
+void boxLoadGame();
+void boxHelp();
+void boxSetting();
+void boxExit();
 void hienthimenu();
 int xuLyMenu(); 
 void trangtri();

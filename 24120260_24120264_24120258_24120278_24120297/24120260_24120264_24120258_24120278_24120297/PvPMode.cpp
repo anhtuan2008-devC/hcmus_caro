@@ -532,7 +532,7 @@ int ProcessFinish(int pWhoWin) {
 
 int AskContinue() {
     setColor(112);
-    box(87, 10, 32, 3, " ");
+    BOX(87, 10, 32, 3);
     GotoXY(88, 10);
     printf("Press Y/N to Play Again/Back"); // Nhập Y để chơi tiếp hoặc nhập N để quay về Menu
     char response = _getch();

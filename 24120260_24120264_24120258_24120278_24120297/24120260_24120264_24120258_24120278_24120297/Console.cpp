@@ -170,3 +170,45 @@ void SSetColor(int mauBg, int mauchu) {
 	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hStdOut, (mauBg << 4) | mauchu);
 }
+
+// Hàm vẽ hộp chứa nội dung
+void box(int x, int y, int w, int h, string nd) {
+	// Vẽ bên trong hộp
+	x--; y--;
+	for (int iy = y; iy < y + h; iy++) {
+		for (int ix = x; ix < x + w; ix++) {
+			GotoXY(ix, iy);
+			cout << " ";
+		}
+	}
+
+	// Hiển thị nội dung trong hộp
+	GotoXY(x + 5, y + 2); // Vị trí hiển thị nội dung trong hộp
+	cout << nd;
+
+	// Vẽ viền trên và dưới của hộp
+	for (int ix = x; ix < x + w; ix++) {
+		GotoXY(ix, y); // Viền trên
+		cout << char(196); // ─
+		GotoXY(ix, y + h - 1); // Viền dưới
+		cout << char(196); // ─
+	}
+
+	// Vẽ viền trái và phải của hộp
+	for (int iy = y; iy < y + h; iy++) {
+		GotoXY(x, iy); // Viền trái
+		cout << char(179); // │
+		GotoXY(x + w - 1, iy); // Viền phải
+		cout << char(179); // │
+	}
+
+	// Vẽ các góc của hộp
+	GotoXY(x, y); // Góc trên bên trái
+	cout << char(218); // ┌
+	GotoXY(x + w - 1, y); // Góc trên bên phải
+	cout << char(191); // ┐
+	GotoXY(x, y + h - 1); // Góc dưới bên trái
+	cout << char(192); // └
+	GotoXY(x + w - 1, y + h - 1); // Góc dưới bên phải
+	cout << char(217); // ┘
+}

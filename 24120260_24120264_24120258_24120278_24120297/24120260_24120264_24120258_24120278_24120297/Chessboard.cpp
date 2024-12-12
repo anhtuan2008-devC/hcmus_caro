@@ -304,11 +304,11 @@ void displayScore(int player) {
     cout << u8" ── ";
     SetConsoleOutputCP(437);
     setColor(79);
-    box(5, 6, 11, 3, " ");
+    BOX(5, 6, 11, 3);
     GotoXY(9, 6);
     printf("%d", scoreX);
     setColor(159);
-    box(22, 6, 11, 3, " ");
+    BOX(22, 6, 11, 3);
     GotoXY(26, 6);
     printf("%d", scoreO);
     setColor(112);

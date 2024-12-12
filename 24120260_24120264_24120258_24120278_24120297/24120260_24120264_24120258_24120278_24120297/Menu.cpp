@@ -3,46 +3,30 @@
 int x = 50;
 int y = 5;
 
-// Hàm vẽ hộp chứa nội dung
-void box(int x, int y, int w, int h, string nd) {
-    // Vẽ bên trong hộp
-    x--; y--;
-    for (int iy = y; iy < y + h; iy++) {
-        for (int ix = x; ix < x + w; ix++) {
-            GotoXY(ix, iy);
-            cout << " ";
-        }
-    }
-
-    // Hiển thị nội dung trong hộp
-    GotoXY(x + 5, y + 2); // Vị trí hiển thị nội dung trong hộp
-    cout << nd;
-
-    // Vẽ viền trên và dưới của hộp
-    for (int ix = x; ix < x + w; ix++) {
-        GotoXY(ix, y); // Viền trên
-        cout << char(196); // ─
-        GotoXY(ix, y + h - 1); // Viền dưới
-        cout << char(196); // ─
-    }
-
-    // Vẽ viền trái và phải của hộp
-    for (int iy = y; iy < y + h; iy++) {
-        GotoXY(x, iy); // Viền trái
-        cout << char(179); // │
-        GotoXY(x + w - 1, iy); // Viền phải
-        cout << char(179); // │
-    }
-
-    // Vẽ các góc của hộp
-    GotoXY(x, y); // Góc trên bên trái
-    cout << char(218); // ┌
-    GotoXY(x + w - 1, y); // Góc trên bên phải
-    cout << char(191); // ┐
-    GotoXY(x, y + h - 1); // Góc dưới bên trái
-    cout << char(192); // └
-    GotoXY(x + w - 1, y + h - 1); // Góc dưới bên phải
-    cout << char(217); // ┘
+void boxPlayGame() {
+    BOX(55, 10, 21, 4);
+    GotoXY(60, 10);
+    cout << "PLAY GAME";
+}
+void boxLoadGame() {
+    BOX(55, 10 + 4, 21, 4);
+    GotoXY(60, 10 + 4);
+    cout << "LOAD GAME";
+}
+void boxHelp() {
+    BOX(55, 10 + 8, 21, 4);
+    GotoXY(62, 10 + 8);
+    cout <<"HELP";
+}
+void boxSetting() {
+    BOX(55, 10 + 12, 21, 4);
+    GotoXY(61, 10 + 12);
+    cout << "SETTING";
+}
+void boxExit() {
+    BOX(55, 10 + 16, 21, 4);
+    GotoXY(62, 10 + 16);
+    cout << "EXIT";
 }
 
 // Hàm hiển thị nội dung của menu
@@ -50,11 +34,11 @@ void hienthimenu() {
     system("color 70");
     trangtri();
     // Vẽ các hộp với nội dung menu
-    box(x, y, 20, 5, "PLAY GAME");
-    box(x, y + 5, 20, 5, "LOAD GAME");
-    box(x, y + 10, 20, 5, "HELP");
-    box(x, y + 15, 20, 5, "SETTING");
-    box(x, y + 20, 20, 5, "QUIT");
+    boxPlayGame();
+    boxLoadGame();
+    boxHelp();
+    boxSetting();
+    boxExit();
 
     // Xử lý nhập liệu cho việc chọn menu
     int selection = 0, previousSelection = -1;
@@ -64,19 +48,19 @@ void hienthimenu() {
             for (int i = 0; i < 5; i++) {
                 setColor(i == selection ? 124 : 112);
                 if (i == 0) {
-                    box(x, y, 20, 5, "PLAY GAME");
+                    boxPlayGame();
                 }
                 else if (i == 1) {
-                    box(x, y + 5, 20, 5, "LOAD GAME");
+                    boxLoadGame();
                 }
                 else if (i == 2) {
-                    box(x, y + 10, 20, 5, "HELP");
+                    boxHelp();
                 }
                 else if (i == 3) {
-                    box(x, y + 15, 20, 5, "SETTING");
+                    boxSetting();
                 }
                 else {
-                    box(x, y + 20, 20, 5, "QUIT");
+                    boxExit();
                 }
                 previousSelection = selection;
             }
@@ -137,7 +121,7 @@ void hienthimenu() {
 }
 
 void trangtri() {
-    
+
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
 
@@ -156,22 +140,331 @@ void trangtri() {
     // Di chuyển đến vị trí căn giữa trên dòng đầu tiên
     setColor(124);
     GotoXY(startX, startY);
-    
-        int x = 25, y = 0;
-        SetConsoleOutputCP(CP_UTF8);
-        setColor(124);
-        GotoXY(_A[1][4].x + 5, _A[1][4].y + 9);
-        cout << u8R"(
- __  __ _____ _   _ _   _ 
-|  \/  | ____| \ | | | | |
-| |\/| |  _| |  \| | | | |
-| |  | | |___| |\  | |_| |
-|_|  |_|_____|_| \_|\___/ 
+
+    int x = 25, y = 0;
+    SetConsoleOutputCP(CP_UTF8);
+    setColor(124);
+
+    cout << u8R"(
+                           ██████   █████  ███    ███ ███████      ██████  █████  ██████   ██████  
+                          ██       ██   ██ ████  ████ ██          ██      ██   ██ ██   ██ ██    ██ 
+                          ██   ███ ███████ ██ ████ ██ █████       ██      ███████ ██████  ██    ██ 
+                          ██    ██ ██   ██ ██  ██  ██ ██          ██      ██   ██ ██   ██ ██    ██ 
+                           ██████  ██   ██ ██      ██ ███████      ██████ ██   ██ ██   ██  ██████                                                                             
 )";
-        SetConsoleOutputCP(437);
-        setColor(112);
+    setColor(0);
+    GotoXY(35, 7);
+    cout << "       ";
+    setColor(0);
+    GotoXY(33, 8);
+    cout << "           ";
+    setColor(100);
+    GotoXY(34, 8);
+    cout << "         ";
+    setColor(0);
+    GotoXY(37, 8);
+    cout << " ";
+    setColor(0);
+    GotoXY(32, 9);
+    cout << "             ";
+    setColor(100);
+    GotoXY(33, 9);
+    cout << "           ";
+    setColor(0);
+    GotoXY(36, 9);
+    cout << " ";
+    setColor(0);
+    GotoXY(32, 10);
+    cout << "             ";
+    setColor(100);
+    GotoXY(33, 10);
+    cout << "           ";
+    setColor(0);
+    GotoXY(35, 10);
+    cout << " ";
+    setColor(0);
+    GotoXY(31, 11);
+    cout << "               ";
+    setColor(0);
+    GotoXY(32, 11);
+    cout << "             ";
+    setColor(100);
+    GotoXY(33, 11);
+    cout << " ";
+    setColor(100);
+    GotoXY(33, 11);
+    cout << "           ";
+    setColor(0);
+    GotoXY(35, 11);
+    cout << " ";
+    setColor(0);
+    GotoXY(31, 12);
+    cout << "               ";
+    setColor(100);
+    GotoXY(32, 12);
+    cout << "             ";
+    setColor(0);
+    GotoXY(35, 12);
+    cout << " ";
+    setColor(0);
+    GotoXY(31, 13);
+    cout << "              ";
+    setColor(100);
+    GotoXY(32, 13);
+    cout << "            ";
+    setColor(0);
+    GotoXY(35, 13);
+    cout << " ";
+    // vẽ vùng trắng miệng 
+
+    setColor(119);
+    GotoXY(37, 13);
+    cout << "      ";
+
+    setColor(0);
+    GotoXY(39, 13);
+    cout << "   ";
+
+    setColor(119);
+    GotoXY(37, 12);
+    cout << "      ";
+    setColor(0);
+    GotoXY(40, 12);
+    cout << " ";
+    setColor(119);
+    GotoXY(38, 11);
+    cout << "      ";
+    // vẽ cửa sổ tâm hồn 
+    setColor(60);
+    GotoXY(38, 10);
+    cout << " ";
+
+    setColor(60);
+    GotoXY(42, 10);
+    cout << " ";
+
+    // phần thân 
+
+    setColor(0);
+    GotoXY(32, 14);
+    cout << "            ";
+    setColor(119);
+    GotoXY(38, 14);
+    cout << "    ";
+    setColor(0);
+    GotoXY(30, 15);
+    cout << "              ";
+    setColor(0);
+    GotoXY(28, 16);
+    cout << "                ";
+    setColor(0);
+    GotoXY(27, 17);
+    cout << "                 ";
+    setColor(0);
+    GotoXY(26, 18);
+    cout << "                 ";
+    setColor(0);
+    GotoXY(24, 19);
+    cout << "                   ";
+    setColor(0);
+    GotoXY(23, 20);
+    cout << "                    ";
+    setColor(0);
+    GotoXY(22, 21);
+    cout << "                     ";
+    // phần trắng ngực 
+    setColor(119);
+    GotoXY(35, 16);
+    cout << "      ";
+    setColor(119);
+    GotoXY(34, 17);
+    cout << "        ";
+    setColor(119);
+    GotoXY(34, 18);
+    cout << "        ";
+    setColor(119);
+    GotoXY(35, 19);
+    cout << "      ";
+    setColor(119);
+    GotoXY(36, 20);
+    cout << "    ";
+    setColor(119);
+    GotoXY(37, 21);
+    cout << "  ";
+    // vẽ nền vàng cho thân 
+    setColor(100);
+    GotoXY(31, 16);
+    cout << "   ";
+    setColor(100);
+    GotoXY(32, 15);
+    cout << "   ";
+    setColor(100);
+    GotoXY(32, 17);
+    cout << "  ";
+    setColor(100);
+    GotoXY(32, 15);
+    cout << "   ";
+    setColor(100);
+    GotoXY(31, 16);
+    cout << "   ";
+    setColor(100);
+    GotoXY(30, 17);
+    cout << "    ";
+    setColor(100);
+    GotoXY(29, 18);
+    cout << "    ";
+    setColor(100);
+    GotoXY(30, 19);
+    cout << "    ";
+    setColor(100);
+    GotoXY(31, 20);
+    cout << "    ";
+    setColor(100);
+    GotoXY(29, 21);
+    cout << "       ";
+    // vẽ màu trắng thân
+
+
+    //// đuôi
+    setColor(0);
+    GotoXY(5, 22);
+    cout << "                                      ";
+
+    setColor(119);
+    GotoXY(8, 22);
+    cout << "             ";
+
+    setColor(0);
+    GotoXY(5, 23);
+    cout << "                                      ";
+
+    setColor(119);
+    GotoXY(9, 23);
+    cout << "          ";
+
+
+    setColor(0);
+    GotoXY(5, 24);
+    cout << "                                      ";
+
+    setColor(119);
+    GotoXY(10, 24);
+    cout << "       ";
+
+    setColor(0);
+    GotoXY(7, 25);
+    cout << "                                    ";
+
+    setColor(119);
+    GotoXY(11, 25);
+    cout << "    ";
+
+    setColor(0);
+    GotoXY(8, 26);
+    cout << "                                    ";
+    setColor(0);
+    GotoXY(10, 27);
+    cout << "                                  ";
+    // vẽ màu từ chân sau lên cổ 
+    setColor(100);
+    GotoXY(24, 27);
+    cout << "    ";
+    setColor(100);
+    GotoXY(20, 26);
+    cout << "  ";
+    setColor(100);
+    GotoXY(20, 25);
+    cout << "     ";
+    setColor(100);
+    GotoXY(24, 24);
+    cout << "   ";
+    setColor(100);
+    GotoXY(25, 23);
+    cout << " ";
+    setColor(119);
+    GotoXY(32, 27);
+    cout << "   ";
+    setColor(119);
+    GotoXY(31, 26);
+    cout << "  ";
+    setColor(100);
+    GotoXY(28, 26);
+    cout << "     ";
+    setColor(100);
+    GotoXY(30, 27);
+    cout << "    ";
+    setColor(100);
+    GotoXY(27, 25);
+    cout << "      ";
+    setColor(100);
+    GotoXY(19, 27);
+    cout << "   ";
+    setColor(119);
+    GotoXY(41, 27);
+    cout << "  ";
+    setColor(119);
+    GotoXY(40, 26);
+    cout << "  ";
+    setColor(119);
+    GotoXY(38, 25);
+    cout << "    ";
+    setColor(119);
+    GotoXY(39, 24);
+    cout << "   ";
+    setColor(100);
+    GotoXY(35, 24);
+    cout << "    ";
+
+
+    setColor(0);
+    GotoXY(30, 27);
+    cout << "  ";
+    setColor(0);
+    GotoXY(30, 26);
+    cout << " ";
+    setColor(0);
+    GotoXY(30, 25);
+    cout << " ";
+    setColor(119);
+    GotoXY(33, 26);
+    cout << "  ";
+    setColor(119);
+    GotoXY(32, 25);
+    cout << "  ";
+    setColor(100);
+    GotoXY(31, 23);
+    cout << "    ";
+    setColor(20);
+    GotoXY(33, 25);
+    cout << "    ";
+
+
+
+    // vẽ màu vùng trắng thân 
+
+
+
+
+
+    setColor(0);
+    GotoXY(15, 28);
+    cout << "                              ";
+    setColor(119);
+    GotoXY(36, 27);
+    cout << "  ";
+    setColor(119);
+    GotoXY(30, 28);
+    cout << " ";// bàn chân 
+    setColor(119);
+    GotoXY(36, 28);
+    cout << "    ";// bàn chân 
+
+    SetConsoleOutputCP(437);
+    setColor(112);
+
     // Reset màu sắc về mặc định
 }
+
 int xuLyMenu() {
     ShowBlinkingCursor(false);
     hienthimenu(); // Hiển thị menu
