@@ -61,29 +61,35 @@ void handleVolume() {
     }
 }
 void settingScreen() {
-    short volume = 500; // Giá trị âm lượng ban đầu
-    while (1) {
-        // Chỉ vẽ lại những phần cần thiết
-        drawVolumeBar(volume);  // Vẽ lại thanh âm lượng
-        drawInstructions();  // Vẽ hướng dẫn
+    short volume = getVolume(); // Lấy giá trị âm lượng hiện tại từ hệ thống
 
-        char ch = _getch(); // Đọc ký tự từ người dùng
-        if (ch == 'd' or ch == 'D') {
-            playSound(3, 0);
-            volume = max(volume - 50, 0);  // Giảm âm lượng, tối thiểu là 0
-            setVolume(getVolume() - 100);
+    while (true) {
+        // Vẽ lại thanh âm lượng và hướng dẫn
+        drawVolumeBar(volume);
+        drawInstructions();
+
+        // Đọc ký tự từ người dùng
+        if (_kbhit()) {
+            char ch = _getch();
+            if (ch == 'd' || ch == 'D') {  // Giảm âm lượng
+                playSound(3, 0);
+                volume = max(volume - 50, 0);  // Giới hạn dưới là 0
+                setVolume(volume);  // Cập nhật lại âm lượng hệ thống
+            }
+            else if (ch == 'u' || ch == 'U') {  // Tăng âm lượng
+                playSound(3, 0);
+                volume = min(volume + 50, 1000);  // Giới hạn trên là 1000
+                setVolume(volume);  // Cập nhật lại âm lượng hệ thống
+            }
+            else if (ch == 27) {  // Thoát
+                playSound(3, 0);
+                Sleep(50);
+                clearScreen();
+                xuLyMenu();  // Quay lại menu chính
+                break;
+            }
         }
-        else if (ch == 'u' or ch == 'U') {
-            playSound(3, 0);
-            volume = min(volume + 50, 1000);  // Tăng âm lượng, tối đa là 1000
-            setVolume(getVolume() + 100);
-        }
-        else if (ch == 27) {
-            playSound(3, 0);
-            Sleep(50);
-            clearScreen();
-            xuLyMenu();
-        }
-        Sleep(20);
+
+        Sleep(20);  // Giảm tải CPU
     }
 }
