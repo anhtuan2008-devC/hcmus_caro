@@ -909,7 +909,7 @@ void hienthimenu() {
     int _X = 52, _Y = 10;
     do {
 
-        GotoXY(50, _Y);
+        /*GotoXY(50, _Y);
         cout << ">>";
         GotoXY(61, _Y);
         cout << "<<";
@@ -917,7 +917,7 @@ void hienthimenu() {
         GotoXY(50, _Y);
         cout << "  ";
         GotoXY(61, _Y);
-        cout << "  ";
+        cout << "  ";*/
 
         if (selection != previousSelection) {
             // Đổi màu cho ô được chọn
@@ -944,12 +944,6 @@ void hienthimenu() {
         }
         char ch = _getch(); // Đọc ký tự từ người dùng
         playSound(2, 0);
-        /*if (ch == 'o') {
-            setVolume(getVolume() - 100);
-        }
-        if (ch == 'p') {
-            setVolume(getVolume() + 100);
-        }*/
         if (ch == 13) { // Phím Enter để xác nhận lựa chọn
             switch (selection) {
             case 0:
