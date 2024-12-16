@@ -10,7 +10,7 @@ void clearScreen() {
 	SetConsoleTitle(L"Caro");
 	fixConsoleWindow();
 	DisableScrollbar();
-	system("color 70");
+	system("color F0");
 }
 
 //screen: goto [x,y]

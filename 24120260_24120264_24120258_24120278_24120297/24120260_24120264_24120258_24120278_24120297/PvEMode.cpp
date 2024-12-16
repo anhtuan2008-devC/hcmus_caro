@@ -1,7 +1,7 @@
 ﻿#include "PvEMode.h"
 
 void BotMove() {
-    Sleep(1000);
+    Sleep(10);
     srand(static_cast<unsigned>(time(0))); // Khởi tạo seed cho random
     int x, y;
     do {

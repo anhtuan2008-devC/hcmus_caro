@@ -1,35 +1,84 @@
 ﻿#include "LoadGame.h"
 
+#include <tlhelp32.h>
+#include <psapi.h>
 
+wstring ConvertToWideString(const string& str) {
+    int size_needed = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), (int)str.size(), NULL, 0);
+    wstring wstrTo(size_needed, 0);
+    MultiByteToWideChar(CP_UTF8, 0, str.c_str(), (int)str.size(), &wstrTo[0], size_needed);
+    return wstrTo;
+}
 
-void DeleteFile(const string& filename) {
-    FILE* file;
+void TerminateProcessesUsingFile(const string& filename) {
+    HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnapShot == INVALID_HANDLE_VALUE) {
+        cerr << "Khong the tao snapshot " << endl;
+        return;
+    }
 
-    if (fopen_s(&file, filename.c_str(), "r") == 0 && file != nullptr) {
-        fclose(file);
-        if (remove(filename.c_str()) == 0) {
-            cout << "File '" << filename << "' da duoc xoa" << endl;
-        }
-        else {
-            // In chi tiết lỗi khi xóa không thành công
-            cerr << "Khong the xoa file '" << filename << "'." << endl;
-            perror("Chi tiet loi khi xoa file"); // Chi tiết về lỗi
-        }
+    PROCESSENTRY32 procEntry;
+    procEntry.dwSize = sizeof(PROCESSENTRY32);
+    if (Process32First(hSnapShot, &procEntry)) {
+        do {
+            HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, procEntry.th32ProcessID);
+            if (hProcess != NULL) {
+                // Kiểm tra handle của tệp đang sử dụng bởi tiến trình
+                std::wstring wFilename = ConvertToWideString(filename);
+                DWORD dwRet = GetModuleFileNameEx(hProcess, NULL, (LPWSTR)wFilename.c_str(), MAX_PATH);
+                if (dwRet > 0 && wFilename == std::wstring(procEntry.szExeFile)) {
+                    cout << "Tien trinh '" << procEntry.szExeFile << "' đang su dung tep '" << filename << "'." << endl;
+                    TerminateProcess(hProcess, 1);
+                    cout << "Da ket thuc tien trinh '" << procEntry.szExeFile << "'." << endl;
+                }
+                CloseHandle(hProcess);
+            }
+        } while (Process32Next(hSnapShot, &procEntry));
+    }
+    CloseHandle(hSnapShot);
+}
+
+void DeleteFileWindows(const string& filename) {
+    wstring wFilename = ConvertToWideString(filename);
+
+    if (DeleteFileW(wFilename.c_str())) {
+        cout << "Tep '" << filename << "' da duoc xoa." << endl;
     }
     else {
-        // In thông báo nếu không thể mở file
-        cerr << "File '" << filename << "' khong ton tai hoặc khong thể mở." << endl;
+        DWORD errorCode = GetLastError();
+        cerr << "Khong the xoa tep '" << filename << "'." << endl;
+        cerr << "Chi tiet loi khi xoa tep: " << errorCode << endl;
+
+        if (errorCode == ERROR_SHARING_VIOLATION) {
+            cout << "Tep dang su dung." << endl;
+            TerminateProcessesUsingFile(filename);
+
+
+            if (DeleteFileW(wFilename.c_str())) {
+                cout << "File '" << filename << "' da duoc xoa." << endl;
+            }
+            else {
+                cerr << "Khong the xoa tep '" << endl;
+                cerr << "Chi tiet loi: " << GetLastError() << endl;
+            }
+        }
     }
 }
+
+
+
+
 
 // Hàm đổi tên tệp
 void RenameFile(const string& oldName, const string& newName) {
     try {
         fs::rename(oldName, newName);
-        cout << "Đã đổi tên tệp từ " << oldName << " thành " << newName << endl;
+        clearScreen();
+        GotoXY(45, 15);
+        cout << "Da doi ten file tu " << oldName << " thanh " << newName << endl;
     }
     catch (const fs::filesystem_error& e) {
-        cout << "Lỗi khi đổi tên tệp: " << e.what() << endl;
+        cout << "Loi khi đoi ten tep: " << e.what() << endl;
     }
 }
 
@@ -241,17 +290,13 @@ void SaveGame() {
                 }
                 file << "\n";
             }
-
-
-
             file << (_TURN ? 1 : 0) << "\n";
-
-
-
             file.close();
             saveCount++;
             GotoXY(65, 20);
             cout << "Game da duoc luu" << endl;
+            clearScreen();
+            xuLyMenu();
             break;
         }
         else {
@@ -356,6 +401,12 @@ void LoadGame() {
         }
     }
     box(40, 20, 45, 5, "Nhap ten file ma ban muon :");
+    GotoXY(1, 1);
+    cout << " Press Esc";
+    GotoXY(1, 2);
+    cout << "to back Menu";
+
+
 
 
     // hinh 1 
@@ -500,10 +551,10 @@ void LoadGame() {
 
                     bool validEnter = true;
                     while (true) {
-                        char command = getInput(); // Lấy đầu vào từ phím
+                        char command = getInput();
                         if (command) {
                             command = toupper(command);
-                            if (command == 27) { // ESC để thoát
+                            if (command == 27) {
                                 playSound(3, 0);
                                 Sleep(10);
                                 ExitGame();
@@ -564,11 +615,20 @@ void LoadGame() {
                         Sleep(100);
                     }
                 }
+                else {
+                    clearScreen();
+                    LoadGame();
+                }
+                file.close();
                 break;
             case 1:
                 playSound(3, 0);
                 clearScreen();
-                DeleteFile(filename);
+                file.is_open();
+                file.close();
+                DeleteFileWindows(filename);
+                clearScreen();
+                LoadGame();
                 break;
             case 2:
                 playSound(3, 0);
@@ -577,17 +637,21 @@ void LoadGame() {
                 box(35, 8, 50, 5, "Nhap ten file ma ban muon doi : ");
                 GotoXY(71, 9);
                 cin >> filename2;
+                file.is_open();
+                file.close();
                 RenameFile(filename, filename2);
+                clearScreen();
+                LoadGame();
                 break;
             }
         }
 
-        if (ch == 75 or ch == 'a' or ch == 'A') { // Phím mũi ten trai 
+        if (ch == 75 or ch == 'a' or ch == 'A') {
             if (selection > 0) {
                 selection--;
             }
         }
-        else if (ch == 77 or ch == 'd' or ch == 'D') { // Phím mũi tên phai 
+        else if (ch == 77 or ch == 'd' or ch == 'D') {
             if (selection < 2) {
                 selection++;
             }
