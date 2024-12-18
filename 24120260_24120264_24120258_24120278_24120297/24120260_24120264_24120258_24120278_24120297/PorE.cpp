@@ -19,7 +19,7 @@ void PorEBackground() {
 
 void BackChar() {
     SetConsoleOutputCP(CP_UTF8);
-    setColor(White2);
+    setColor(White);
     printAsciiArt("Clear.txt", 78, 0);
     veconmeo(78, 5);
     SetConsoleOutputCP(437);
@@ -29,11 +29,11 @@ void BackChar() {
 
 void PvPChar() {
     SetConsoleOutputCP(CP_UTF8);
-    setColor(White2);
+    setColor(White);
     printAsciiArt("Clear.txt", 78, 0);
     setColor(Black);
     printAsciiArt("PvP.txt", 80, 5);
-    setColor(White2);
+    setColor(White);
     GotoXY(112, 18);
     cout << u8"▒▒";
     GotoXY(113, 19);
@@ -118,7 +118,7 @@ void PvPChar() {
 
 void PvEChar() {
     SetConsoleOutputCP(CP_UTF8);
-    setColor(White2);
+    setColor(White);
     printAsciiArt("Clear.txt", 78, 0);
     setColor(Pink2);
     printAsciiArt("PvE.txt", 80, 3);

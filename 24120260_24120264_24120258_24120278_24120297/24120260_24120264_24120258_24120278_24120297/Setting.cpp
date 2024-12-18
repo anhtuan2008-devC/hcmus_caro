@@ -1,11 +1,29 @@
 ﻿#include "Setting.h"
 
+void vechuSETTING() {
+    SetConsoleOutputCP(CP_UTF8);
+    GotoXY(5, 1);
+    SSetColor(15, 4);
+    cout << u8R"(
+                                                                                                                                                                                                                                              
+                                                                      ║██                                                                
+                                                                                                      
+                                     ║█████  ║██████ ║██████ ║██████  ║██  ║███     ██   ║██████                    
+                                    ║██      ║██       ║██     ║██    ║██  ║████    ██  ║██    ██               
+                                    ║██      ║██       ║██     ║██    ║██  ║██ ██   ██  ║██                         
+                                      ║██    ║██████   ║██     ║██    ║██  ║██  ██  ██  ║██                    
+                                        ║██  ║██       ║██     ║██    ║██  ║██   ██ ██  ║██   ████              
+                                        ║██  ║██       ║██     ║██    ║██  ║██    ████  ║██    ██           
+                                    ║█████   ║██████   ║██     ║██    ║██  ║██     ███   ║██████                                                                                                                                                                                                                                                                                                                                                                                                                                            
+ )";
+    SetConsoleOutputCP(437);
+}
 // Hàm vẽ thanh âm lượng
 void drawVolumeBar(short volume) {
     const int barLength = 50; // Kích thước thanh âm lượng
     int volumeWidth = (volume / 1000.0) * barLength;  // Tính chiều rộng của thanh âm lượng
 
-    GotoXY(10, 5);  // Di chuyển con trỏ đến vị trí vẽ thanh âm lượng
+    GotoXY(10, 15);  // Di chuyển con trỏ đến vị trí vẽ thanh âm lượng
     cout << "Volume: [";  // In phần đầu của thanh âm lượng
 
     // Vẽ phần thanh âm lượng đầy (với mã ASCII 219)
@@ -25,13 +43,13 @@ void drawVolumeBar(short volume) {
 
 // Hàm vẽ hướng dẫn sử dụng
 void drawInstructions() {
-    GotoXY(10, 8);  // Di chuyển con trỏ đến vị trí (10, 8) để hiển thị hướng dẫn
+    GotoXY(20, 17);  // Di chuyển con trỏ đến vị trí (10, 8) để hiển thị hướng dẫn
     cout << "Instructions:" << endl;
-    GotoXY(10, 9);
+    GotoXY(20, 18);
     cout << "Press 'u' to increase volume" << endl;
-    GotoXY(10, 10);
+    GotoXY(20, 19);
     cout << "Press 'd' to decrease volume" << endl;
-    GotoXY(10, 11);
+    GotoXY(20, 20);
     cout << "Press 'ESC' to exit" << endl;
 }
 
@@ -61,7 +79,10 @@ void handleVolume() {
     }
 }
 void settingScreen() {
+    system("color F0");
     short volume = getVolume(); // Lấy giá trị âm lượng hiện tại từ hệ thống
+    Sleep(10);
+    vechuSETTING();
 
     while (true) {
         // Vẽ lại thanh âm lượng và hướng dẫn
