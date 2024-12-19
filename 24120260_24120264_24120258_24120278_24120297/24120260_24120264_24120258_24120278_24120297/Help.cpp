@@ -101,7 +101,7 @@ void helpText() {
     setColor(112);
 }
 
-void menuHelp() {
+void helpScreen() {
     Sleep(10);
     helpBackground();
     helpText();

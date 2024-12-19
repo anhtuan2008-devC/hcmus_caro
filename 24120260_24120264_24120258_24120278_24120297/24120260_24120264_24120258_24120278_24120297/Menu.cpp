@@ -959,7 +959,7 @@ void hienthimenu() {
             case 2: {
                 playSound(3, 0);
                 clearScreen();
-                menuHelp(); // Hiển thị trợ giúp
+                helpScreen(); // Hiển thị trợ giúp
                 break;     // Sau khi quay lại, không tiếp tục xử lý menu chính
             }
             case 3:

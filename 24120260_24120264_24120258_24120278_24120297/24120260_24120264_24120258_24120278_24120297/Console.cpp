@@ -57,15 +57,6 @@ void fixConsoleWindow() {
 		SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
 }
 
-void setConsoleWindow(int w, int h)
-{
-	HWND console = GetConsoleWindow();
-	RECT r;
-	GetWindowRect(console, &r);
-
-	MoveWindow(console, r.left, r.top, w, h, TRUE);
-}
-
 void SetWindowSize(SHORT width, SHORT height) {
 	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 

@@ -16,7 +16,6 @@ void GotoXY(int column, int line);
 void setColor(int color);
 void ShowBlinkingCursor(bool isVisible);
 void fixConsoleWindow();
-void setConsoleWindow(int w, int h);
 void SetWindowSize(SHORT width, SHORT height);
 void SetScreenBufferSize(SHORT width, SHORT height);
 void DisableSelection();

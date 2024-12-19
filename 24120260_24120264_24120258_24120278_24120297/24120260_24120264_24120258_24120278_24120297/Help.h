@@ -3,4 +3,4 @@
 
 void helpBackground();
 void helpText();
-void menuHelp();
+void helpScreen();
