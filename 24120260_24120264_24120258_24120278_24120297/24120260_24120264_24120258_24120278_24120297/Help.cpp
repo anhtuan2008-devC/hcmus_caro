@@ -111,5 +111,5 @@ void helpScreen() {
     playSound(3, 0);
     Sleep(50);
     // Quay lại menu chính sau khi người dùng nhấn Enter
-    hienthimenu();
+    menuScreen();
 }

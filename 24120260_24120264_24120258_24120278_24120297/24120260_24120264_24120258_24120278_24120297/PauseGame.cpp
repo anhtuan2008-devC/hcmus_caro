@@ -52,7 +52,7 @@ void pauseGame() {
         if (ch == 27) { // Phím Escape để thoát
             playSound(3, 0);
             clearScreen();
-            xuLyMenu();
+            menuScreen();
             break;
         }
         playSound(2, 0);
@@ -71,7 +71,7 @@ void pauseGame() {
             case 2:
                 playSound(3, 0);
                 clearScreen();
-                xuLyMenu();
+                menuScreen();
                 break;
             }
         }

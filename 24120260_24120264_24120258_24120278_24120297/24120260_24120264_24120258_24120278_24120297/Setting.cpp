@@ -106,7 +106,7 @@ void settingScreen() {
                 playSound(3, 0);
                 Sleep(50);
                 clearScreen();
-                xuLyMenu();  // Quay lại menu chính
+                menuScreen();  // Quay lại menu chính
                 break;
             }
         }

@@ -7,5 +7,5 @@ void main() {
 	SetConsoleTitle(L"Caro");
 	fixConsoleWindow();
 	ShowScrollbar(false);
-	xuLyMenu();
+	menuScreen();
 }

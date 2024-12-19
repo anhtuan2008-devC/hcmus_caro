@@ -4,7 +4,7 @@
 #include "PvPMode.h"
 #include "Help.h"
 #include "SoundManager.h"
-#include "PorE.h"
+#include "GameOption.h"
 #include "Setting.h"
 
 void boxPlayGame();
@@ -13,6 +13,6 @@ void boxHelp();
 void boxSetting();
 void boxExit();
 void hienthimenu();
-int xuLyMenu(); 
+int menuScreen(); 
 void trangtri();
 

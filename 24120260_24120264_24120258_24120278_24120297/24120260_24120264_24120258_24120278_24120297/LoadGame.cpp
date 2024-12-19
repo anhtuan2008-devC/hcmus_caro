@@ -296,7 +296,7 @@ void SaveGame() {
             GotoXY(65, 20);
             cout << "Game da duoc luu" << endl;
             clearScreen();
-            xuLyMenu();
+            menuScreen();
             break;
         }
         else {
@@ -467,7 +467,7 @@ void LoadGame() {
         if (key == 27) {
             playSound(3, 0);
             clearScreen();
-            xuLyMenu();
+            menuScreen();
         }
         else if (key == '\r') {
             if (!filename.empty()) {
@@ -507,7 +507,7 @@ void LoadGame() {
         if (ch == 27) {
             playSound(3, 0);
             clearScreen();
-            xuLyMenu();
+            menuScreen();
             break;
         }
         playSound(2, 0);

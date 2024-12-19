@@ -103,7 +103,7 @@ void GabageCollect() {
 void ExitGame() {
     system("cls");
     GabageCollect();
-    xuLyMenu();
+    menuScreen();
     // Có thể lưu game trước khi exit
 }
 

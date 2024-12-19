@@ -994,7 +994,7 @@ void hienthimenu() {
 }
 
 
-int xuLyMenu() {
+int menuScreen() {
     ShowBlinkingCursor(false);
     hienthimenu(); // Hiển thị menu
     return 0;
