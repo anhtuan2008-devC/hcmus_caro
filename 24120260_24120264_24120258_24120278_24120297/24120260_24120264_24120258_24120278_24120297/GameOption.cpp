@@ -144,7 +144,7 @@ void boxBack() {
     GotoXY(60, 18);
     cout << "Back";
 }
-void PorE() {
+void gameOptionScreen() {
     fixConsoleWindow();
     PorEBackground();
     boxPvP();

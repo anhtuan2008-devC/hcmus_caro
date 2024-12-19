@@ -949,7 +949,7 @@ void hienthimenu() {
             case 0:
                 playSound(3, 0);
                 clearScreen();
-                PorE();
+                gameOptionScreen();
                 break;
             case 1:
                 playSound(3, 0);

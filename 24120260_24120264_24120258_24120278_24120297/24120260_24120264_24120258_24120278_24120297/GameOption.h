@@ -2,7 +2,7 @@
 #include "Menu.h"
 
 void PorEBackground();
-void PorE();
+void gameOptionScreen();
 void boxPvP();
 void boxPvE();
 void PvPChar();
